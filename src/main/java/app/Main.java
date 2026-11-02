@@ -27,10 +27,10 @@ public class Main {
                             menu.exibirCardapio();
                             int opcaoLanche = menu.lerOpcaoLanche();
 
-                            // 1. Cria o lanche base
+
                             Lanche lanche = (Lanche) sistemaRestaurante.criarLanche(opcaoLanche);
 
-                            // 2. Personalização: Retirar ingredientes (delegado para a Facade)
+
                             int opcaoRemocao = -1;
                             while (opcaoRemocao != 0) {
                                 menu.exibirMenuRemocao();
@@ -42,7 +42,6 @@ public class Main {
                                 }
                             }
 
-                            // 3. Adicionais: Decorator (delegado para a Facade)
                             ItemCardapio item = lanche;
                             int opcaoAdicional = -1;
                             while (opcaoAdicional != 0) {
@@ -55,7 +54,6 @@ public class Main {
                                 }
                             }
 
-                            // 4. Salva o item decorado no pedido
                             pedidos.adicionarItem(item);
 
                             querAdicionarmais = menu.querAdicionarMaisItens();

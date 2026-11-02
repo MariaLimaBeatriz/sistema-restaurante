@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Pedidos {
     private int numeroIdentificador;
-    private String NomeCliente;
 
     private ArrayList<ItemCardapio> itens = new ArrayList<>();
     private String nomeCliente;
