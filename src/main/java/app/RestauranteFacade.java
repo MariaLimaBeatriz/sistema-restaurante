@@ -31,22 +31,35 @@ public class RestauranteFacade {
         }
     }
 
-    public ItemCardapio aplicarAdicional(ItemCardapio item, int opcaoAdicional){
+
+    public ItemCardapio aplicarAdicional(ItemCardapio item, int opcaoAdicional) {
 
         switch (opcaoAdicional) {
-            case 1: return new ComCheddar(item);
-            case 2: return new ComBaconExtra(item);
-            default: return item;
+            case 1:
+                return new ComCheddar(item);
+            case 2:
+                return new ComBaconExtra(item);
+            default:
+                return item;
         }
+    }
 
+    public void removerIngrediente(Lanche lanche, int opcaoRemocao) {
+        switch (opcaoRemocao) {
+            case 1 -> lanche.setQueijo(false);
+            case 2 -> lanche.setAlface(false);
+            case 3 -> lanche.setTomate(false);
+            case 4 -> lanche.setCebola(false);
+            default -> throw new IllegalArgumentException("Opção de remoção inválida: " + opcaoRemocao);
+        }
     }
 
     public Pedidos criarPedido(String nomeCliente) {
-         return gerenciador.criarPedido(nomeCliente);
+        return gerenciador.criarPedido(nomeCliente);
 
     }
 
-    public void adicionarLanche(Pedidos pedido, int opcao) {
+     public void adicionarLanche(Pedidos pedido, int opcao) {
         pedido.adicionarItem(criarLanche(opcao));
     }
 
