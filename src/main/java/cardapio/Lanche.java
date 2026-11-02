@@ -1,37 +1,40 @@
 package cardapio;
 
 
-public class Lanche {
+public class Lanche implements ItemCardapio {
 
-    private String nome;
     private double preco;
+    private String nomeLanche;
 
-    public Lanche(String nome, double preco) {
-        setNome(nome);
+    public Lanche(String nomeLanche, double preco) {
+        setNomeLanche(nomeLanche);
         setPreco(preco);
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String getDescricao() {
+        return nomeLanche;
     }
 
     public double getPreco() {
         return preco;
     }
 
-    public void setNome(String nome) {
-     if (nome == null || nome.trim().isEmpty()) {
-         throw new IllegalArgumentException(" nome não pode ser nulo ou vazio");
+    public void setNomeLanche(String nomeLanche) {
+     if (nomeLanche == null || nomeLanche.trim().isEmpty()) {
+         throw new IllegalArgumentException(" nome do lanche não pode ser nulo ou vazio");
      }
-      this.nome = nome;
+      this.nomeLanche = nomeLanche;
     }
 
     public void setPreco(double preco) {
-        if(preco <= 0) {
+        if(preco < 0) {
             throw new IllegalArgumentException("O preço não pode ser negativo!.");
         }
         this.preco = preco;
     }
+
+
 
 }
 

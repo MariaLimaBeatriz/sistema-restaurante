@@ -2,7 +2,7 @@ package app;
 
 import Pedidos.GerenciadorPedidos;
 import Pedidos.Pedidos;
-import cardapio.Lanche;
+import cardapio.*;
 
 import java.util.HashMap;
 
@@ -11,24 +11,34 @@ public class RestauranteFacade {
     private GerenciadorPedidos gerenciador = new GerenciadorPedidos();
 
 
-    public Lanche criarLanche(int opcao) {
+    public ItemCardapio criarLanche(int opcao) {
         switch (opcao) {
 
             case 1:
-                return new Lanche("X -Burger", 16.00);
+                return LancheFactory.xBurger();
 
             case 2:
-                return new Lanche("X-Salada", 18.00);
+                return LancheFactory.xSalada();
 
             case 3:
 
-                return new Lanche("X- Bacon", 22);
+                return LancheFactory.xBacon();
 
             default:
                 throw new IllegalArgumentException("Opção de lanche inválida: " + opcao);
 
 
         }
+    }
+
+    public ItemCardapio aplicarAdicional(ItemCardapio item, int opcaoAdicional){
+
+        switch (opcaoAdicional) {
+            case 1: return new ComCheddar(item);
+            case 2: return new ComBaconExtra(item);
+            default: return item;
+        }
+
     }
 
     public Pedidos criarPedido(String nomeCliente) {

@@ -1,6 +1,7 @@
 package app;
 
 import Pedidos.Pedidos;
+import cardapio.ItemCardapio;
 
 public class Main {
     static void main() {
@@ -25,7 +26,22 @@ public class Main {
                         while (querAdicionarmais) {
                             menu.exibirCardapio();
                             int opcaoLanche = menu.lerOpcaoLanche();
-                            sistemaRestaurante.adicionarLanche(pedidos, opcaoLanche);
+
+                            ItemCardapio item = sistemaRestaurante.criarLanche(opcaoLanche);
+                            int opcaoAdcional = -1;
+                            while (opcaoAdcional != 0) {
+                                menu.exibirMenuAdicionais();
+                                opcaoAdcional = menu.lerOpcao();
+
+
+                                if (opcaoAdcional != 0) {
+                                    item = sistemaRestaurante.aplicarAdicional(item, opcaoAdcional);
+                                    menu.exibirMensagem("Adicional incluído ao seu pedido");
+                                }
+                            }
+
+                            pedidos.adicionarItem(item);
+
                             querAdicionarmais = menu.querAdicionarMaisItens();
                         }
 

@@ -1,7 +1,7 @@
 package app;
 
 import Pedidos.Pedidos;
-import cardapio.Lanche;
+import cardapio.ItemCardapio;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -27,6 +27,15 @@ public class MenuConsole {
 
     }
 
+    public void exibirMenuAdicionais() {
+        System.out.println("Deseja algum adicional?");
+        System.out.println("1 - Cheddar (+ R$ 4,00)");
+        System.out.println("2 - Bacon Extra (+ R$ 6,00)");
+        System.out.println("0 - Nenhum / Concluir");
+        System.out.print("Escolha uma opção: ");
+    }
+
+
      public String lerNomeCliente(){
          System.out.println("O nome do cliente: ");
          String nomeCliente = scanner.nextLine();
@@ -51,12 +60,16 @@ public class MenuConsole {
 
      public void exibirPedido( Pedidos pedidos){
          System.out.println( "Pedido nº: " + pedidos.getNumeroIdentificador());
-         System.out.println(" Cliente:  " + pedidos.getNomeCliente());
+         System.out.println(" Cliente:  " + pedidos.getnomeCliente());
 
-         for(Lanche lanche : pedidos.getItens()) {
-             System.out.printf("- %s: R$ %.2f%n ", lanche.getNome(), lanche.getPreco());
+         for(ItemCardapio itemCardapio: pedidos.getItens()) {
+             System.out.printf("- %s: R$ %.2f%n ", itemCardapio.getDescricao(), itemCardapio.getPreco());
          }
          System.out.printf("Total: R$ %.2f%n", pedidos.calcularTotal());
+     }
+
+     public void criarAdicional(){
+
      }
 
      public boolean querAdicionarMaisItens() {

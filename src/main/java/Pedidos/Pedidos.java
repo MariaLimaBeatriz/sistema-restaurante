@@ -1,6 +1,6 @@
 package Pedidos;
 
-import cardapio.Lanche;
+import cardapio.ItemCardapio;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,8 @@ public class Pedidos {
     private int numeroIdentificador;
     private String NomeCliente;
 
-    private ArrayList<Lanche> itens = new ArrayList<>();
+    private ArrayList<ItemCardapio> itens = new ArrayList<>();
+    private String nomeCliente;
 
     public Pedidos(int numero, String nomeCliente) {
         this.numeroIdentificador = numero;
@@ -16,22 +17,24 @@ public class Pedidos {
         this.itens = new ArrayList<>();
     }
 
-
-    private void setNomeCliente(String NomeCliente) {
-        if (NomeCliente == null || NomeCliente.trim().isEmpty()) {
-            throw new IllegalArgumentException(" nome não pode ser nulo ou vazio");
-        }
-        this.NomeCliente = NomeCliente;
+    public Pedidos() {
     }
 
-    public void adicionarItem( Lanche lanche){
-       itens.add(lanche);
+    private void setNomeCliente(String nomeCliente) {
+        if (nomeCliente == null || nomeCliente.trim().isEmpty()) {
+            throw new IllegalArgumentException(" nome do cliente não pode ser nulo ou vazio");
+        }
+        this.nomeCliente = nomeCliente;
+    }
+
+    public void adicionarItem( ItemCardapio item){
+       itens.add(item);
     }
 
     public double calcularTotal() {
         double total = 0;
-        for (Lanche lanche : itens) {
-            total += lanche.getPreco();
+        for (ItemCardapio item  : itens) {
+            total += item.getPreco();
         }
         return total;
     }
@@ -40,11 +43,11 @@ public class Pedidos {
         return numeroIdentificador;
     }
 
-    public String getNomeCliente() {
-        return NomeCliente;
+    public String getnomeCliente() {
+        return nomeCliente;
     }
 
-    public ArrayList<Lanche> getItens() {
+    public ArrayList<ItemCardapio> getItens() {
         return itens;
     }
 }
